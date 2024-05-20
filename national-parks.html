@@ -17,8 +17,10 @@
       <div>
         <section>
           <h1>National Parks</h1>
-          <label for="stateSelect">States/Territories</label>
-          <select form="stateSelect" id="" title="stateData">
+          <label form="stateSelect" id="statesId">States/Territories
+            <input type="text" id="statesText">
+          </label>
+          <select form="stateSelect" id="stateData" title="stateData">
             <option value="">Select...</option>
             <option value="">Alabama</option>
             <option value="">Alaska</option>
@@ -74,7 +76,14 @@
         </section>
       </div>
 
-      <div class="mt-3">
+      <div id="parksDiv" class="mt-4">
+        <section>
+
+
+        </section>
+      </div>
+
+      <!-- <div class="mt-3">
         <section>
           <table id="nationalParksTb1">
             <thead>
@@ -91,7 +100,7 @@
             <tbody id="nationalParksTb1Body"></tbody>
           </table>
         </section>
-      </div>
+      </div> -->
     </main>
     <script src="scripts/locationData.js"></script>
     <script src="scripts/parkTypeData.js"></script>
