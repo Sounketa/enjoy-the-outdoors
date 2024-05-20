@@ -1,26 +1,70 @@
 "use strict";
 
-
 window.onload = function () {
-  const parksDiv = document.querySelector("#petsDiv");
+  // HTML element variables
+  const parkTableBody = document.querySelector("#parkTableBody");
 
-  function loadParks() {
+  //functions
+  function loadParkTable() {
     for (const park of nationalParksArray) {
-      buildCard(park);
+      buildTableRow(park);
     }
   }
 
-  function buildCard(park) {
-    let cardDiv = document.createElement("div");
-    cardDiv.classList.add("card");
+  function buildTableRow(park) {
+  let row = parkTableBody.insertRow();
 
-    let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
-    cardBody.innerText = park.LocationName;
-    cardDiv.appendChild(cardBody);
+  let cell1 = row.insertCell();
+  cell1.innerText = park.LocationName;
 
-    // parksDiv.appendChild(cardDiv);
+  let cell2 = row.insertCell();
+  cell2.innerText = park.Address;
+
+  let cell3 = row.insertCell();
+  cell3.innerText = park.City;
+
+  let cell4 = row.insertCell();
+  cell4.innerText = park.State;
+
+  let cell5 = row.insertCell();
+  cell5.innerText = park.Zip;
+
+  let cell6 = row.insertCell();
+  cell6.innerText = park.Phone;
+
+  let cell7 = row.insertCell();
+  cell7.innerText = park.Fax;
   }
+  
+  //event handling
 
-  loadParks();
+  //initial loading
+
+  loadParkTable();
 };
+
+
+
+// window.onload = function () {
+//   const parksDiv = document.querySelector("#petsDiv");
+
+//   function loadParks() {
+//     for (const park of nationalParksArray) {
+//       buildCard(park);
+//     }
+//   }
+
+//   function buildCard(park) {
+//     let cardDiv = document.createElement("div");
+//     cardDiv.classList.add("card");
+
+//     let cardBody = document.createElement("div");
+//     cardBody.classList.add("card-body");
+//     cardBody.innerText = park.LocationName;
+//     cardDiv.appendChild(cardBody);
+
+//     // parksDiv.appendChild(cardDiv);
+//   }
+
+//   loadParks();
+// };
