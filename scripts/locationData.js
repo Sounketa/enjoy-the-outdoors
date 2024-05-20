@@ -1,3 +1,5 @@
+"use strict"
+
 const locationsArray = [
     "Alabama",
     "Alaska",
@@ -55,3 +57,20 @@ const locationsArray = [
     "Wisconsin",
     "Wyoming"
 ]
+
+
+function init() {
+    const statesList = document.querySelector("#statesList");
+  
+    for (const state of locationsArray) {
+      const option = document.querySelector("#option");
+  
+      option.value = state.abbrev;
+  
+      option.innerText = state.name;
+  
+      statesList.appendChild(option);
+    }
+  }
+  
+  window.onload = init;
