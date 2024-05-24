@@ -1,22 +1,38 @@
 "use strict";
 
-window.onload = function () {
-  // HTML element variables
-  const parkTableBody = document.querySelector("#parkTableBody");
-  const filterOptionType = document.querySelectorAll("input[name='filterOption']");
-  const filterOptionsContainer = document.getElementById("filterOptions");
 
-  //functions
-  function loadParkTable(parks) {
+const statesList = document.getElementById('statesList');
+const parkTypeList = document.getElementById('parkTypeList');
+const parkTableBody = document.getElementById('parkTableBody');
+const filterByState = document.getElementById('filterByState');
+const filterByType = document.getElementById('filterByType');
 
-    parkTableBody.innerHTML = "";
-    
-    for (const park of parks) {
-      buildTableRow(park);
+function loadParkTable() {
+    parkTableBody.innerHTML = ''; // Clear the table body
+    for (const park of nationalParksArray) {
+        buildTableRow(park);
     }
-  }
+}
 
-  function buildTableRow(park) {
+function loadStateList() {
+    for (const state of locationsArray) {
+        const option = document.createElement('option');
+        option.value = state;
+        option.innerText = state;
+        statesList.appendChild(option);
+    }
+}
+
+function loadParkTypeList() {
+    for (const parkType of parkTypesArray) {
+        const option = document.createElement('option');
+        option.value = parkType;
+        option.innerText = parkType;
+        parkTypeList.appendChild(option);
+    }
+}
+
+function buildTableRow(park) {
     let row = parkTableBody.insertRow();
 
     let cell1 = row.insertCell();
@@ -39,135 +55,43 @@ window.onload = function () {
 
     let cell7 = row.insertCell();
     cell7.innerText = park.Fax;
+}
+
+function filterParks() {
+    const selectedState = statesList.value;
+    const selectedParkType = parkTypeList.value;
+    parkTableBody.innerHTML = ''; // Clear the table body
+    for (const park of nationalParksArray) {
+      if (filterByState.checked && (selectedState === 'all' || park.State === selectedState)) {
+          buildTableRow(park);
+      } else if (filterByType.checked && (selectedParkType === 'all' || park.LocationName.includes(selectedParkType))) {
+          buildTableRow(park);
+      }
   }
+}
 
-  function filterByState(state) {
-    return nationalParksArray.filter(park => park.State === state);
+function toggleFilter() {
+  if (filterByState.checked) {
+      statesList.disabled = false;
+      parkTypeList.disabled = true;
+  } else if (filterByType.checked) {
+      statesList.disabled = true;
+      parkTypeList.disabled = false;
   }
-
-  function filterByParkType(parkType) {
-    return nationalParksArray.filter(park => park.ParkType === parkType);
-  }
-
-  function populateFilterOptions(filterOption) {
-
-    filterOptionsContainer.innerHTML = "";
-
-    const dropdown = document.createElement("select");
-    dropdown.id = "filterDropdown";
-
-    let optionsArray = [];
-    if (filterOption === "state") {
-      optionsArray = locationsArray;
-    } else if (filterOption === "parkType") {
-      optionsArray = parkTypesArray;
-    }
-
-    for (const option of optionsArray) {
-      const optionElement = document.createElement("option");
-      optionElement.value = option;
-      optionElement.textContent = option;
-      dropdown.appendChild(optionElement);
-    }
-
-    dropdown.addEventListener("change", function () {
-      const selectedValue = dropdown.value;
-      if (filterOption === "state") {
-        const filteredParks = filterByState(selectedValue);
-        loadParkTable(filteredParks);
-      } else if (filterOption === "parkType") {
-        const filteredParks = filterByParkType(selectedValue);
-        loadParkTable(filteredParks);
-  }
-});
-
-filterOptionsContainer.appendChild(dropdown);
+  filterParks(); // Apply filter immediately after toggling
 }
 
 // Event handling
-filterOptionType.forEach(option => {
-option.addEventListener("change", function () {
-  const selectedFilterOption = document.querySelector("input[name='filterOption']:checked").value;
-  populateFilterOptions(selectedFilterOption);
-});
-});
+statesList.addEventListener('change', filterParks);
+parkTypeList.addEventListener('change', filterParks);
+filterByState.addEventListener('change', toggleFilter);
+filterByType.addEventListener('change', toggleFilter);
 
 // Initial loading
-loadParkTable(nationalParksArray);
-};
-
-//     if (filterType.value === "state") {
-//       for (const state of locationsArray) {
-//         const label = document.createElement("label");
-//         const radio = document.createElement("input");
-//         radio.type = "radio";
-//         radio.name = "filterOption";
-//         radio.value = state;
-//         label.appendChild(radio);
-//         label.appendChild(document.createTextNode(state));
-//         filterOptionsContainer.appendChild(label);
-
-//         radio.addEventListener("change", function () {
-//           const filteredParks = filterByState(radio.value);
-//           loadParkTable(filteredParks);
-//         });
-//       }
-//     } else if (filterType.value === "parkType") {
-//       for (const parkType of parkTypesArray) {
-//         const label = document.createElement("label");
-//         const radio = document.createElement("input");
-//         radio.type = "radio";
-//         radio.name = "filterOption";
-//         radio.value = parkType;
-//         label.appendChild(radio);
-//         label.appendChild(document.createTextNode(parkType));
-//         filterOptionsContainer.appendChild(label);
-
-//         radio.addEventListener("change", function () {
-//           const filteredParks = filterByParkType(radio.value);
-//           loadParkTable(filteredParks);
-//         });
-//       }
-//     }
-//   }
-
-//   // Event handling
-//   filterType.addEventListener("change", populateFilterOptions);
-
-//   // Initial loading
-//   loadParkTable(nationalParksArray);
-//   populateFilterOptions();
-// };
+loadParkTable();
+loadStateList();
+loadParkTypeList();
+toggleFilter();
 
 
 
-
-  // function loadStateList() {
-  //   // loop through states array one at a time
-  //   for (const state of locationsArray) {
-  //     // create option element
-  //     const option = document.createElement("option");
-  //     // set the value of the element (value is not visible on the web page)
-  //     option.value = state;
-  //     // set the text between the opening and closing option tags
-  //     option.innerText = state;
-
-  //     // add the option element to the page as a child of the select list
-  //     statesList.appendChild(option);
-  //   }
-  // }
-
- 
-
- 
-  // function loadParkTypeList() {    
-  //   for (const park of parkTypesArray) {
-  //     const option = document.createElement("option");
-
-  //     option.value = park;
-
-  //     option.innerText = park;
-
-  //     parkTypeList.appendChild(option);
-  //   }
-  // }

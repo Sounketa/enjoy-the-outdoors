@@ -40,23 +40,29 @@
         </div>
       </nav>
     </header>
+
     <main class="container mt-5">
+      <div class="d-flex" id="filter">
+
+      </div>
       <!-- Dropdown and button for state/park-->
-      <div>
-        <h3>Select a filter:</h3>
-        <div id="filterOptionType">
-          <label><input type="radio" name="filterOption" value="state" />State</label>
-          <label><input type="radio" name="filterOption" value="parkType" /> Park Type</label>
-        </div>
-      </div>
 
-      <div id="filterOptions">
-      <!-- Filter options (dropdown menus) will be populated here based on the selected filter option -->
-      </div>
+      <div class="">
+        <input type="radio" id="filterByState" name="filter" value="state" checked>
+        <label for="filterByState">Filter by State</label>
+        <select id="statesList" title="Location">
+            <option value="all">All States</option>
+        </select>
 
-      <!-- Dropdown and button for park -->
-      <div class="mt-5">
-        <table id="parksTable">
+        <input type="radio" id="filterByType" name="filter" value="type">
+        <label for="filterByType">Filter by Park Type</label>
+        <select id="parkTypeList" title="Park Type" disabled>
+            <option value="all">All Park Types</option>
+        </select>
+      
+      </div>
+      <div class="mt-5 min-vh-100">
+        <table class="table table-striped" id="parksTable">
           <thead>
             <tr>
               <th>Name</th>
@@ -64,8 +70,8 @@
               <th>City</th>
               <th>State</th>
               <th>Zip Code</th>
-              <th>Phone</th>
-              <th>Fax</th>
+              <th class="px-5">Phone</th>
+              <th class="px-5">Fax</th>
             </tr>
           </thead>
           <tbody id="parkTableBody">
