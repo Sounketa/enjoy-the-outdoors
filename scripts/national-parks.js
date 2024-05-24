@@ -7,6 +7,8 @@ const parkTableBody = document.getElementById('parkTableBody');
 const filterByState = document.getElementById('filterByState');
 const filterByType = document.getElementById('filterByType');
 
+
+// This function populates the table with all park data from the nationalParksArray
 function loadParkTable() {
     parkTableBody.innerHTML = ''; // Clear the table body
     for (const park of nationalParksArray) {
@@ -14,6 +16,7 @@ function loadParkTable() {
     }
 }
 
+// This function populates the state dropdown (statesList) with options. It iterates through the locationsArray, creates an option element for each state,
 function loadStateList() {
     for (const state of locationsArray) {
         const option = document.createElement('option');
@@ -23,6 +26,7 @@ function loadStateList() {
     }
 }
 
+// This function  populates the park type dropdown
 function loadParkTypeList() {
     for (const parkType of parkTypesArray) {
         const option = document.createElement('option');
@@ -32,6 +36,7 @@ function loadParkTypeList() {
     }
 }
 
+// This function builds a table row for a given park
 function buildTableRow(park) {
     let row = parkTableBody.insertRow();
 
@@ -57,6 +62,7 @@ function buildTableRow(park) {
     cell7.innerText = park.Fax;
 }
 
+// This function filters the parks based on the selected state or park type,
 function filterParks() {
     const selectedState = statesList.value;
     const selectedParkType = parkTypeList.value;
@@ -70,6 +76,7 @@ function filterParks() {
   }
 }
 
+// This function toggles the enabled/disabled state of the state and park type dropdowns 
 function toggleFilter() {
   if (filterByState.checked) {
       statesList.disabled = false;
@@ -81,12 +88,14 @@ function toggleFilter() {
   filterParks(); // Apply filter immediately after toggling
 }
 
+// These lines add event listeners to the dropdowns and radio buttons:
 // Event handling
 statesList.addEventListener('change', filterParks);
 parkTypeList.addEventListener('change', filterParks);
 filterByState.addEventListener('change', toggleFilter);
 filterByType.addEventListener('change', toggleFilter);
 
+// These lines initialize the page:
 // Initial loading
 loadParkTable();
 loadStateList();
