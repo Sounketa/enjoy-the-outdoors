@@ -1,57 +1,9 @@
-.MainHeader {
-    position: relative;
-    min-height: 3.4375rem !important;
-    background-color: #000;
-    color: #fff;
-    box-sizing: border-box;
-}
-
-.MainHeader__Navbar.container {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.MainHeader__Navbar {
-    display: flex;
-    align-items: center;
-}
-.GlobalHeader a {
-    color: #fff;
-}
-.MainHeader a {
-    text-decoration: none;
-}
-
-.Outdoors-image {
-    height: 50%;
-    width: 100%;
-}
-.cointainer-outdoors {
-    float: left;
-    padding: 5rem;
-    margin: 10rem 0;
-    background: rgba(0, 0, 0, .6);
-}
-
-/* Container, adjusting all classes with just conatiner - have to change names */
 .container {
-    position: relative;
-    text-align: center;
-    color: rgb(3, 3, 3);
-  }
+  position: relative;
+  text-align: center;
+  color: rgb(3, 3, 3);
+}
   
-  /* Container holding the image and the text */
-  .top-left {
-    position: absolute;
-    top: 50px;
-    left: 30px;
-    transform: translate(10%, 50%);
-    color: #fff;
-    text-shadow: #000;
-    text-decoration: solid;
-    font-size: 2rem;
-  }
-
   #mountainDiv {
     display: flex;
     flex-wrap: wrap;
@@ -60,10 +12,14 @@
   }
   .card {
     width: 18rem;
-  }
-  .card-img-fit {
+  } 
+  .card {
+    width: 50%;
+    justify-content: center;
+  } 
+   .card-img-fit {
     object-fit: cover;
     width: 40rem;
-    height: 40rem;
+    height: 35rem;
+  } 
   
-

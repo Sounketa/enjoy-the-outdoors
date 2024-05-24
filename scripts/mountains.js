@@ -41,7 +41,7 @@ window.onload = function () {
   
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
-    cardBody.innerText = `${mountain.name}\nElevation: ${mountain.elevation} meters\nDescription: ${mountain.desc} meters\nCoordinates: ${mountain.coords}`;
+    cardBody.innerText = `${mountain.name}\nElevation: ${mountain.elevation} meters\nDescription: ${mountain.desc} meters\n`;
     cardDiv.appendChild(cardBody);
   
     mountainDiv.appendChild(cardDiv)
